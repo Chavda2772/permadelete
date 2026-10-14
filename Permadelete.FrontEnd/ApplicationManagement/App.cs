@@ -23,6 +23,9 @@ namespace Permadelete.ApplicationManagement
         #region Constructors
         private App()
         {
+            var stylesDic = new Uri("pack://application:,,,/Styles.xaml");
+            this.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = stylesDic });
+
             Operations = new ReadOnlyObservableCollection<OperationVM>(_operationsSource);
         }
         #endregion
@@ -61,7 +64,8 @@ namespace Permadelete.ApplicationManagement
         protected override void OnStartup(StartupEventArgs e)
         {
             var stylesDic = new Uri("pack://application:,,,/Styles.xaml");
-            Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = stylesDic });
+            if (Current.Resources.MergedDictionaries.All(d => d.Source != stylesDic))
+                Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = stylesDic });
 
             var settings = SettingsHelper.GetSettings();
             ThemeHelper.ApplyTheme(settings.GetTheme());

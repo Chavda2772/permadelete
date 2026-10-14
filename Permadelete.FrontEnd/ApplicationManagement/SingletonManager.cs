@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,9 +43,7 @@ namespace Permadelete.ApplicationManagement
         private void InitializeComponents()
         {
 #if CLASSIC
-            if (string.IsNullOrWhiteSpace(Keys.DROPBOX_API_KEY))
-                DialogService.GetMessageDialog("API key not found", "Could not find Dropbox API key.", "Ok").ShowDialog();
-            else
+            if (!string.IsNullOrWhiteSpace(Keys.DROPBOX_API_KEY))
             {
                 UpdateManager.Initialize(Keys.DROPBOX_API_KEY);
                 Task.Run(() => App.Current.UpdateAfter(5));
