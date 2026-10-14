@@ -1,4 +1,4 @@
-﻿using Permadelete.Helpers;
+using Permadelete.Helpers;
 using Permadelete.Mvvm;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,6 +35,72 @@ namespace Permadelete.ViewModels
             {
                 if (Set(ref _defaultOverwritePasses, value))
                 {
+                    Save();
+                }
+            }
+        }
+
+        private bool _overwriteSolidStateDrives;
+        public bool OverwriteSolidStateDrives
+        {
+            get { return _overwriteSolidStateDrives; }
+            set
+            {
+                if (Set(ref _overwriteSolidStateDrives, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        private bool _wipeClusterSlack;
+        public bool WipeClusterSlack
+        {
+            get { return _wipeClusterSlack; }
+            set
+            {
+                if (Set(ref _wipeClusterSlack, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        private bool _wipeAlternateDataStreams;
+        public bool WipeAlternateDataStreams
+        {
+            get { return _wipeAlternateDataStreams; }
+            set
+            {
+                if (Set(ref _wipeAlternateDataStreams, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        private bool _obfuscateNamesAndTimestamps;
+        public bool ObfuscateNamesAndTimestamps
+        {
+            get { return _obfuscateNamesAndTimestamps; }
+            set
+            {
+                if (Set(ref _obfuscateNamesAndTimestamps, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        private bool _showInContextMenu;
+        public bool ShowInContextMenu
+        {
+            get { return _showInContextMenu; }
+            set
+            {
+                if (Set(ref _showInContextMenu, value))
+                {
+                    ContextMenuHelper.Sync(value);
                     Save();
                 }
             }
@@ -83,6 +149,11 @@ namespace Permadelete.ViewModels
                             Themes.First();
 
             DefaultOverwritePasses = settings.DefaultOverwritePasses;
+            OverwriteSolidStateDrives = settings.OverwriteSolidStateDrives;
+            WipeClusterSlack = settings.WipeClusterSlack;
+            WipeAlternateDataStreams = settings.WipeAlternateDataStreams;
+            ObfuscateNamesAndTimestamps = settings.ObfuscateNamesAndTimestamps;
+            ShowInContextMenu = settings.ShowInContextMenu;
 
             _isLoaded = true;
         }
@@ -95,6 +166,11 @@ namespace Permadelete.ViewModels
 
             settings.Theme = SelectedTheme.Data.Name;
             settings.DefaultOverwritePasses = DefaultOverwritePasses;
+            settings.OverwriteSolidStateDrives = OverwriteSolidStateDrives;
+            settings.WipeClusterSlack = WipeClusterSlack;
+            settings.WipeAlternateDataStreams = WipeAlternateDataStreams;
+            settings.ObfuscateNamesAndTimestamps = ObfuscateNamesAndTimestamps;
+            settings.ShowInContextMenu = ShowInContextMenu;
 
             SettingsHelper.SaveSettings(settings);
         }

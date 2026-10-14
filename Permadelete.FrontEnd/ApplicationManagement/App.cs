@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using Permadelete.Views;
@@ -65,6 +65,11 @@ namespace Permadelete.ApplicationManagement
 
             var settings = SettingsHelper.GetSettings();
             ThemeHelper.ApplyTheme(settings.GetTheme());
+
+            if (settings.ShowInContextMenu)
+            {
+                ContextMenuHelper.Sync(true);
+            }
 
             if (e.Args.Count() == 0)
             {
