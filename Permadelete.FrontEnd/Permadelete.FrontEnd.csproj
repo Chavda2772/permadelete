@@ -43,6 +43,18 @@
       .pdb;.config
     </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CLASSIC;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowedReferenceRelatedFileExtensions>
+      .pdb;.config
+    </AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\icon.ico</ApplicationIcon>
   </PropertyGroup>
@@ -322,14 +334,14 @@ copy $(ProjectDir)\Helpers\Keys.cs $(SolutionDir)\Publish\Keys-empty.cs /y
 copy $(SolutionDir)\Publish\Keys.cs $(ProjectDir)\Helpers\Keys.cs /y</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+    <PostBuildEvent>if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
 
 echo "Cleaning up..."
 copy $(SolutionDir)\Publish\Keys-empty.cs  $(ProjectDir)\Helpers\Keys.cs /y
 del /Q /F $(TargetDir)\SharpRaven.pdb
 
 if "$(ConfigurationName)" == "WindowsStore" (
-  %25comspec%25 /k "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+  if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
   echo "Making Appx package..."
   echo "Runnning: MakeAppx pack /o /d $(TargetDir) /p $(ProjectDir)\bin\WindowsStorePackage\Permadelete.appx /l"
   MakeAppx pack /o /d $(TargetDir) /p $(ProjectDir)\bin\WindowsStorePackage\Permadelete.appx /l
@@ -341,12 +353,25 @@ if "$(ConfigurationName)" == "WindowsStore" (
 
 if "$(ConfigurationName)" == "Classic" (
   echo "Getting version number..."
-  echo "Running: $(SolutionDir)Publish\ufactory\ufactory.exe -source $(TargetDir) -output $(SolutionDir)Publish\Update -target $(TargetName)$(TargetExt)"
-  $(SolutionDir)Publish\ufactory\ufactory.exe -source $(TargetDir) -output $(SolutionDir)Publish\Update -target $(TargetName)$(TargetExt)
+  if exist "$(SolutionDir)Publish\ufactory\ufactory.exe" (
+    "$(SolutionDir)Publish\ufactory\ufactory.exe" -source "$(TargetDir)\" -output "$(SolutionDir)Publish\Update" -target "$(TargetName)$(TargetExt)"
+  )
 
   if exist "C:\Program files (x86)\Inno Setup 6\ISCC.exe" (
-  echo "Compiling installer..."
-  start "" "C:\Program files (x86)\Inno Setup 6\ISCC.exe" "$(SolutionDir)Publish\Installer.iss"
+    echo "Compiling installer..."
+    start "" "C:\Program files (x86)\Inno Setup 6\ISCC.exe" "$(SolutionDir)Publish\Installer.iss"
+  )
+)
+
+if "$(ConfigurationName)" == "Release" (
+  echo "Getting version number..."
+  if exist "$(SolutionDir)Publish\ufactory\ufactory.exe" (
+    "$(SolutionDir)Publish\ufactory\ufactory.exe" -source "$(TargetDir)\" -output "$(SolutionDir)Publish\Update" -target "$(TargetName)$(TargetExt)"
+  )
+
+  if exist "C:\Program files (x86)\Inno Setup 6\ISCC.exe" (
+    echo "Compiling installer..."
+    start "" "C:\Program files (x86)\Inno Setup 6\ISCC.exe" "$(SolutionDir)Publish\Installer.iss"
   )
 )</PostBuildEvent>
   </PropertyGroup>
