@@ -134,44 +134,53 @@ namespace Permadelete.Services
             if ((folder.Attributes & FileAttributes.ReparsePoint) == 0)
             {
                 Progress<long> itemProgress;
-                foreach (var info in folder.EnumerateFileSystemInfos())
+                try
                 {
-                    itemProgress = new Progress<long>();
-
-                    if (cancellationToken != null)
-                        cancellationToken.ThrowIfCancellationRequested();
-
-                    var file = info as FileInfo;
-                    var dir = info as DirectoryInfo;
-                    long length = 0;
-
-                    try
+                    foreach (var info in folder.EnumerateFileSystemInfos())
                     {
-                        if (file != null)
-                        {
-                            length = file.Length;
-                            itemProgress.ProgressChanged += (sender, newBytes) => progress.Report(newBytes);
-                            var result = await ShredFileAsync(file, passes, cancellationToken, itemProgress).ConfigureAwait(false);
+                        itemProgress = new Progress<long>();
 
-                            if (!result) return result;
+                        if (cancellationToken != null)
+                            cancellationToken.ThrowIfCancellationRequested();
+
+                        var file = info as FileInfo;
+                        var dir = info as DirectoryInfo;
+                        long length = 0;
+
+                        try
+                        {
+                            if (file != null)
+                            {
+                                length = file.Length;
+                                itemProgress.ProgressChanged += (sender, newBytes) => progress.Report(newBytes);
+                                var result = await ShredFileAsync(file, passes, cancellationToken, itemProgress).ConfigureAwait(false);
+
+                                if (!result) return result;
+                            }
+
+                            if (dir != null)
+                            {
+                                length = await GetFolderSize(dir);
+                                itemProgress.ProgressChanged += (sender, newBytes) => progress.Report(newBytes);
+                                var result = await ShredFolderAsync(dir, passes, cancellationToken, itemProgress).ConfigureAwait(false);
+
+                                if (!result) return result;
+                            }
                         }
-
-                        if (dir != null)
+                        catch (Exception)
                         {
-                            length = await GetFolderSize(dir);
-                            itemProgress.ProgressChanged += (sender, newBytes) => progress.Report(newBytes);
-                            var result = await ShredFolderAsync(dir, passes, cancellationToken, itemProgress).ConfigureAwait(false);
-
-                            if (!result) return result;
+                            // if an exception was thrown while handling this item, just skip it
+                            everythingWasShredded = false;
+                            progress.Report((length));
+                            continue;
                         }
                     }
-                    catch (Exception)
-                    {
-                        // if an exception was thrown, just skip this item
-                        everythingWasShredded = false;
-                        progress.Report((length));
-                        continue;
-                    }
+                }
+                catch (Exception)
+                {
+                    // if enumeration of the folder failed (e.g. shared/network folder access),
+                    // mark as not fully shredded and continue gracefully
+                    everythingWasShredded = false;
                 }
             }
 
