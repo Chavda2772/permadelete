@@ -48,3 +48,7 @@ Name: "{sendto}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: sendtoi
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
+[Registry]
+Root: HKCU; Subkey: "Software\Classes\*\shell\Permadelete"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\Directory\shell\Permadelete"; Flags: uninsdeletekey
+
