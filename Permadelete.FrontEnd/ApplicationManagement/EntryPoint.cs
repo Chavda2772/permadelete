@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Permadelete.ApplicationManagement
 {
@@ -12,6 +12,15 @@ namespace Permadelete.ApplicationManagement
         [STAThread]
         public static void Main(string[] args)
         {
+            if (args != null && args.Length > 0 &&
+                (args[0].Equals("--uninstall", StringComparison.OrdinalIgnoreCase) ||
+                 args[0].Equals("/uninstall", StringComparison.OrdinalIgnoreCase) ||
+                 args[0].Equals("-uninstall", StringComparison.OrdinalIgnoreCase)))
+            {
+                Helpers.ContextMenuHelper.Unregister();
+                return;
+            }
+
             var manager = new SingletonManager();
             manager.Run(args);
         }

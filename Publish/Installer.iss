@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Permadelete"
-#define MyAppVersion "0.6.2"
+#define MyAppVersion "0.7.0"
 #define MyAppPublisher "Developers Tree"
 #define MyAppURL "https://developerstree.github.io/permadelete/"
 #define MyAppExeName "Permadelete.exe"
@@ -47,4 +47,8 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 Name: "{sendto}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: sendtoicon
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+[Registry]
+Root: HKCU; Subkey: "Software\Classes\*\shell\Permadelete"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\Directory\shell\Permadelete"; Flags: uninsdeletekey
 

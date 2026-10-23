@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +22,11 @@ namespace Permadelete.Services
 #endif
 
 #if CLASSIC
-            _ravenClient = new SharpRaven.RavenClient(Keys.SENTRY_API_DSN);
-            _ravenClient.Release = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            if (!string.IsNullOrWhiteSpace(Keys.SENTRY_API_DSN))
+            {
+                _ravenClient = new SharpRaven.RavenClient(Keys.SENTRY_API_DSN);
+                _ravenClient.Release = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
 #endif
         }
         private LoggerService()

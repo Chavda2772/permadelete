@@ -77,7 +77,7 @@ namespace Permadelete.ViewModels
         public double Progress
         {
             get { return _progress; }
-            private set
+            set
             {
                 _oldProgress = _progress;
                 if (Set(ref _progress, value))

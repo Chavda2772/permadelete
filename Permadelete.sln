@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 18
+VisualStudioVersion = 18.11.12306.390
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permadelete.FrontEnd", "Permadelete.FrontEnd\Permadelete.FrontEnd.csproj", "{65CF9D82-1685-49F4-9834-A163C9038597}"
 EndProject
@@ -9,10 +8,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permadelete.Updater", "Perm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permadelete.UpdateFactory", "Permadelete.UpdateFactory\Permadelete.UpdateFactory.csproj", "{0649E428-72E8-4F36-B031-34F12CBF78F5}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Permadelete.Setup", "Permadelete.Setup\Permadelete.Setup.vdproj", "{A44EDD74-3876-0E18-7C2E-905C57C29A7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Classic|Any CPU = Classic|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 		WindowsStore|Any CPU = WindowsStore|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -20,19 +22,29 @@ Global
 		{65CF9D82-1685-49F4-9834-A163C9038597}.Classic|Any CPU.Build.0 = Classic|Any CPU
 		{65CF9D82-1685-49F4-9834-A163C9038597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65CF9D82-1685-49F4-9834-A163C9038597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65CF9D82-1685-49F4-9834-A163C9038597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65CF9D82-1685-49F4-9834-A163C9038597}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65CF9D82-1685-49F4-9834-A163C9038597}.WindowsStore|Any CPU.ActiveCfg = WindowsStore|Any CPU
 		{65CF9D82-1685-49F4-9834-A163C9038597}.WindowsStore|Any CPU.Build.0 = WindowsStore|Any CPU
 		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.Classic|Any CPU.ActiveCfg = Classic|Any CPU
 		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.Classic|Any CPU.Build.0 = Classic|Any CPU
 		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.WindowsStore|Any CPU.ActiveCfg = WindowStore|Any CPU
 		{5651C82B-95EB-4658-BF08-C00BD3DAB1FD}.WindowsStore|Any CPU.Build.0 = WindowStore|Any CPU
 		{0649E428-72E8-4F36-B031-34F12CBF78F5}.Classic|Any CPU.ActiveCfg = Classic|Any CPU
 		{0649E428-72E8-4F36-B031-34F12CBF78F5}.Classic|Any CPU.Build.0 = Classic|Any CPU
 		{0649E428-72E8-4F36-B031-34F12CBF78F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0649E428-72E8-4F36-B031-34F12CBF78F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0649E428-72E8-4F36-B031-34F12CBF78F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0649E428-72E8-4F36-B031-34F12CBF78F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0649E428-72E8-4F36-B031-34F12CBF78F5}.WindowsStore|Any CPU.ActiveCfg = Classic|Any CPU
+		{A44EDD74-3876-0E18-7C2E-905C57C29A7B}.Classic|Any CPU.ActiveCfg = Release
+		{A44EDD74-3876-0E18-7C2E-905C57C29A7B}.Debug|Any CPU.ActiveCfg = Debug
+		{A44EDD74-3876-0E18-7C2E-905C57C29A7B}.Release|Any CPU.ActiveCfg = Release
+		{A44EDD74-3876-0E18-7C2E-905C57C29A7B}.WindowsStore|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

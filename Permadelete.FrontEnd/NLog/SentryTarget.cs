@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +20,11 @@ namespace Permadelete.Nlog
         public SentryTarget()
         {
 #if CLASSIC
-            if (string.IsNullOrWhiteSpace(Keys.SENTRY_API_DSN))
-                throw new NullReferenceException("Bad Sentry API DSN.");
-
-            _ravenClient = new RavenClient(Keys.SENTRY_API_DSN);
-            _ravenClient.Release = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            if (!string.IsNullOrWhiteSpace(Keys.SENTRY_API_DSN))
+            {
+                _ravenClient = new RavenClient(Keys.SENTRY_API_DSN);
+                _ravenClient.Release = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
 #endif
         }
         #endregion
@@ -45,6 +45,8 @@ namespace Permadelete.Nlog
         [Conditional("CLASSIC")]
         private void SendRaven(string message, LogLevel level)
         {
+            if (_ravenClient == null) return;
+
             var sentryEvent = new SentryEvent(message);
             sentryEvent.Level = ParseLogLevel(level);
             _ravenClient.Capture(sentryEvent);
@@ -53,6 +55,8 @@ namespace Permadelete.Nlog
         [Conditional("CLASSIC")]
         private void SendRaven(Exception ex)
         {
+            if (_ravenClient == null) return;
+
             var sentryEvent = new SentryEvent(ex);
             sentryEvent.Level = ErrorLevel.Error;
             _ravenClient.Capture(sentryEvent);

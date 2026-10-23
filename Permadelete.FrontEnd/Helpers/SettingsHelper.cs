@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 
@@ -58,5 +58,10 @@ namespace Permadelete.Helpers
             }
         }
 
+        public bool OverwriteSolidStateDrives { get; set; } = true;
+        public bool WipeClusterSlack { get; set; } = true;
+        public bool WipeAlternateDataStreams { get; set; } = true;
+        public bool ObfuscateNamesAndTimestamps { get; set; } = true;
+        public bool ShowInContextMenu { get; set; } = true;
     }
 }
