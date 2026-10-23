@@ -172,12 +172,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FF1F47E22B31117F1D0A81E7F6027A4E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AD761B37D4C2481F8419C5F757FC7E2A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -259,6 +253,12 @@
         "OwnerKey" = "8:_AB8DAC3B8ADDC4471891FB99FAF944EF"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FF1F47E22B31117F1D0A81E7F6027A4E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -277,6 +277,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -293,6 +301,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -893,9 +917,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Permadelete.Setup"
+        "ProductName" = "8:Permadelete"
         "ProductCode" = "8:{BDD28FB6-3E7B-44F5-A21F-8647B13432C9}"
-        "PackageCode" = "8:{90B38D89-1C6D-4A7D-AC3F-045455570F8E}"
+        "PackageCode" = "8:{CA714DE5-F997-4A1A-B011-686858134D9B}"
         "UpgradeCode" = "8:{7FB3CBE5-1F1A-4EB5-9EF0-2BE46EFB209D}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -903,12 +927,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:murlidharproperties08@gmail.com"
+        "Manufacturer" = "8:Chavda"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Permadelete.Setup"
+        "Title" = "8:Permadelete"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:murlidharproperties08@gmail.com"
+        "ARPCONTACT" = "8:Chavda"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -1015,6 +1039,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3F14FBCB77B746FEBED93822A0836717"
+            {
+            "Name" = "8:Permadelete"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_AD761B37D4C2481F8419C5F757FC7E2A"
+            "Folder" = "8:_14E876CF060E4562956B47321233D015"
+            "WorkingFolder" = "8:_F2B38F9E5DBD405092E328D364A070E2"
+            "Icon" = "8:_3D2020847EEC4EA1BC08C17A95DFB350"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_63A0C65E5A6E442DACDADC889ABE527A"
             {
             "Name" = "8:Permadelete"
